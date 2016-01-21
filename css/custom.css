@@ -28,6 +28,7 @@ body {
 
 #map {
         margin-left: 8%;
+        margin-right: 8%;
         max-width: 500px;
         height: 400px;
         width: 100%;
