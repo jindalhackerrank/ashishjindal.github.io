@@ -26,6 +26,13 @@ body {
     overflow: hidden;
 }
 
+#map {
+        margin-left: 8%;
+        max-width: 500px;
+        height: 400px;
+        width: 100%;
+      }
+
 a {
     color: #555;
     text-decoration: none;
