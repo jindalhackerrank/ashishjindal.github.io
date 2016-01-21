@@ -267,6 +267,15 @@ a:hover {
     padding-bottom: 10px;
 }
 
+.content p .project-img {
+    display: inline;
+    max-width: 70%;
+    float: left;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+
 .content p .right-img-small {
     display: inline;
     max-width: 10%;
@@ -296,6 +305,9 @@ a:hover {
     .content p .left-img {
         max-width: 60%;
     }
+    .content p .project-img {
+        max-width: 100%;
+    }
     .content p .right-img-small {
         max-width: 15%;
     }
@@ -318,6 +330,9 @@ a:hover {
         max-width: 100%;
         padding: 0px;
         padding-bottom: 10px;
+    }
+    .content p .project-img {
+        max-width: 100%;
     }
      .content p .right-img-small {
         max-width: 30%;
