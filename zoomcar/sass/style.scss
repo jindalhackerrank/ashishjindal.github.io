@@ -1,0 +1,228 @@
+$border-color:#e0e0e0;
+$max_width:1100px;
+body {
+    overflow: hidden;
+}
+
+.header {
+    height: 60px;
+    line-height: 60px;
+    vertical-align: middle;
+    border-bottom: 1px solid $border-color;
+    .header-content {
+        padding-left: 40px;
+        max-width: $max_width;
+        margin: 0 auto;
+    }
+    .api-hits{
+    	.api,.parcel{
+    		display: inline-block;
+    		width: 50%;
+    		font-size: 1.4em;
+    		font-weight: bold;
+    		color:green;
+    	}
+    }
+}
+
+.content {
+    position: absolute;
+    max-width: $max_width;
+    margin: 0 auto;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    .content-1 {
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0;
+        right: 0;
+        .list {
+            height: 100%;
+            .list-content {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                border-left: 1px solid $border-color;
+                border-right: 1px solid $border-color;
+                .search {
+                    i {
+                        position: absolute;
+                        top: 20px;
+                        left: 15px;
+                        color: #e0e0e0;
+                        font-size: 1.4em;
+                    }
+                    input {
+                        border: 1px solid #fff;
+                        border-bottom: 1px solid $border-color;
+                        padding: 20px;
+                        padding-left: 50px;
+                        width: 100%;
+                    }
+                }
+                .list-content-items {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 62px;
+                    bottom: 70px;
+                    overflow-y: auto;
+                    .list-item {
+                        cursor: pointer;
+                        border: 1px solid #fff;
+                        border-bottom: 1px solid $border-color;
+                        height: 60px;
+                        line-height: 60px;
+                        vertical-align: middle;
+                        padding-left: 20px;
+                        padding-right: 20px;
+                        width: 100%;
+                        &.highlight {
+                            background: #f0f0f0;
+                        }
+                        .item-name {
+                            display: inline-block;
+                            float: left;
+                        }
+                        .item-price {
+                            color: orange;
+                            font-size: 1.2em;
+                            font-weight: bold;
+                            width: 100px;
+                            display: inline-block;
+                            float: right;
+                            .price {
+                                display: inline-block;
+                                padding-left: 5px;
+                            }
+                        }
+                    }
+                    .list-item:hover {
+                        background: #f0f0f0;
+                    }
+                }
+                .sort {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    height: 70px;
+                    line-height: 70px;
+                    vertical-align: middle;
+                    bottom: 0px;
+                    border-top: 1px solid $border-color;
+                    .lab,
+                    .value,
+                    .weight {
+                        display: inline-block;
+                        width: 33%;
+                        border-right: 1px solid $border-color;
+                        //padding-left:20px;
+                        text-align: center;
+                        cursor: pointer;
+                        &.highlight {
+                            background: #f0f0f0;
+                        }
+                    }
+                    .weight {
+                        border: none;
+                    }
+                    .lab {
+                        i {
+                            padding-right: 30px;
+                            font-size: 1.3em;
+                        }
+                    }
+                }
+            }
+        }
+        .item {
+        	height: 100%;
+            .item-content {
+            	margin-left: -30px;
+                height: 100%;
+                border-right: 1px solid $border-color;
+                .close{
+                    position:absolute;
+                    top:10px;
+                    left:10px;
+                    i{
+                        font-size: 2em;
+                        cursor: pointer;
+                        color: black;
+                    }
+                }
+                .item-details{
+                	border-bottom:1px solid #f0f0f0;
+                	vertical-align: top;
+                	//height: 40%;
+                	.image{
+                		vertical-align: top;
+                		padding:20px;
+                		display: inline-block;
+                		width: 40%;
+                		border-right:1px solid #f0f0f0;
+                		//max-height: 80%;
+                		
+                	}
+                	.details{
+                		vertical-align: top;
+                		display: inline-block;
+                		width: 60%;
+                		.name{
+                			background:blue;
+                			padding:10px;
+                			color: white;
+                			width: 100%;
+                		}
+                		.field{
+                			width: 50%;
+                			display: inline-block;
+                			padding:10px;
+                			font-size: 1.1em;
+                			font-weight: bold;
+                			i{
+                				padding-right:5px;
+                			}
+                		}
+                		.color{
+                			display: inline-block;
+                			height: 30px;
+                			width: 60px;
+                		}
+                	}
+                }
+                #map_canvas{
+                    height: 50%;
+                    width:100%;
+                }
+                .actions{
+                    position:absolute;
+                    bottom:0px;
+                    left:0;
+                    right: 0;
+                    height: 50px;
+                    line-height: 50px;
+                    vertical-align: middle;
+                    .action{
+                        width: 50%;
+                        display: inline-block;
+                        cursor: pointer;
+                        font-size: 1.5em;
+                        text-align: center;
+                        i{
+                            padding-right:20px;
+
+                        }
+                        border-right:1px solid #f0f0f0;
+                        &.blue{
+                            color: blue;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
