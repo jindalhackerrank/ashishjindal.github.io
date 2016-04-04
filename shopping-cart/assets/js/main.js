@@ -32186,6 +32186,8 @@ var cartStore = objectAssign({}, EventEmitter.prototype, {
         });
         this.setProductInfo(d.p_id);
         console.log(data["productsInCart"]);
+        if(this.couponInfo["applied"] == true)
+            this.applyCouponCode(this.couponInfo["code"]);
     },
     removeProductFromCart:function(itemId){
         data["productsInCart"].map(function(value,index){
