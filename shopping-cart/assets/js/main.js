@@ -31823,6 +31823,9 @@ var Modal = React.createClass({displayName: "Modal",
     cartAction.updateData(this.state);
     $(".modal").modal("hide");
   },
+  _closeModal:function(){
+    $(".modal").modal("hide");
+  },
   render: function () {      
     var size = [];
     var color = [];
@@ -31834,6 +31837,7 @@ var Modal = React.createClass({displayName: "Modal",
       size.push((React.createElement("option", {value: value.code}, value.code)));
       });
       comp = (React.createElement("div", {className: "modal-body row prod-info"}, 
+              React.createElement("span", {className: "close", onClick: this._closeModal}, "X"), 
               React.createElement("div", {className: "col-md-6 col-lg-6 col-sm-12 col-xs-12 space"}, 
                 React.createElement(Img, {image: this.state.img})
               ), 
