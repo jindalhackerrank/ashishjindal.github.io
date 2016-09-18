@@ -72,3 +72,19 @@ html, body {
 				font-size: 3em;
 				cursor: pointer;
 			}
+.image{
+  display: inline-block;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.fav{
+  text-align: center;
+  background: black;
+  color: white;
+}
+
+.show-fav{
+  background: #f0f0f0;
+  
+}
