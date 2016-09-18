@@ -133,7 +133,6 @@ var Header =  React.createClass({
     })
     this.pubsub_token1 = PubSub.subscribe("removeFav",function(topic,data){
       self.setState({"showFav":false});
-      console.log("lll");
     })
   },
   componentWillUnmount: function() {
