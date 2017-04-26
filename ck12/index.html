@@ -36,32 +36,73 @@
     <div id="calender">
     </div>
     <script type="text/javascript">
-    var timeSlot = new Array(720).fill(0);
 
-    function getSlotDimensions(arr) {
+    function rangeOverlap(a,b){
+        return (a.start <= b.end) && (a.end >= b.start); 
+    }
+
+    function unionArrays(x, y) {
+            var res = [];
+            for (var i = 0; i < x.length; i++) {
+                if (res.indexOf(x[i]) === -1)
+                    res.push(x[i]);
+            }
+            for (var j = 0; j < y.length; j++) {
+                if (res.indexOf(y[j]) === -1)
+                    res.push(y[j]);
+            }
+            return res;
+        }
+
+    function getIdDetails(arr,val){
+            for(var i =0 ; i<arr.length ; i++){
+                if(arr[i].id == val)
+                    return arr[i];
+            }
+    }
+
+    function getTimeSlotDimensions(arr){
         var res = [];
-        arr.map(function(value, index) {
-            for (var i = value.start - 1; i < value.end; i++) {
-                timeSlot[i]++;
-            }
-        })
-        arr.map(function(value, index) {
-            var a = 0;
-            var b = timeSlot[value.start - 1];
-            for (var j = value.start - 1; j < value.end; j++) {
-                if (timeSlot[j] > a)
-                    a = timeSlot[j]
-            }
-            res.push({
-                "id": value.id,
-                "width": 600 / a,
-                "top": value.start * 2,
-                "height": value.end * 2 - value.start * 2,
-                "left": (600 / a) * (b - 1),
-                "right": (600 / a) * (b - 1) + (600 / a)
+        res.push({"id":[arr[0].id],"start":arr[0].start,"end":arr[0].end})
+        for(var i=1 ;i<arr.length;i++){
+            var x = [];
+            var obj = {"id":[arr[i].id],"start":arr[i].start,"end":arr[i].end};
+            res.map(function(value,index){
+                if(rangeOverlap(value,obj)){
+                    x.push(index);
+                    obj["id"] = unionArrays(obj["id"],value.id);
+                    obj["start"] = Math.min(obj.start,value.start);
+                    obj["end"] = Math.max(obj.end,value.end);
+                }
+            })
+            console.log(x);
+            x.map(function(value){
+                res.splice(value,1);
+                console.log(res);
             });
+            res.push(obj);
+            console.log(obj);
+            
+        }
+        console.log(res);
+        var r = [];
+        res.map(function(value,index){
+            var y = value.id.length;
+            var width = 600/y;
+            
+            value.id.map(function(val,ind){
+                var m = getIdDetails(arr,val);
+                r.push({
+                    "top":m.start*2,
+                    "left":ind *width,
+                    "width":width,
+                    "height":(m.end - m.start) *2,
+                    "id":m.id
+                })
+            })
         })
-        return res;
+
+        return r ;
     }
 
     function createTimeSlots(slots) {
@@ -77,31 +118,28 @@
         })
     }
 
-    createTimeSlots(getSlotDimensions([{
+    createTimeSlots(getTimeSlotDimensions([{
         "id": 1,
-        "start": 120,
-        "end": 150
+        "start": 40,
+        "end": 670
     }, {
         "id": 2,
-        "start": 125,
-        "end": 155
+        "start": 560,
+        "end": 620
     }, {
         "id": 3,
-        "start": 130,
-        "end": 170
-    }, {
-        "id": 4,
-        "start": 180,
+        "start": 40,
         "end": 200
     }, {
-        "id": 5,
-        "start": 135,
-        "end": 157
+        "id": 4,
+        "start": 120,
+        "end": 240
     }, {
-        "id": 6,
-        "start": 300,
-        "end": 360
+        "id": 5,
+        "start": 40,
+        "end": 640
     }]));
+    
     </script>
 </body>
 
