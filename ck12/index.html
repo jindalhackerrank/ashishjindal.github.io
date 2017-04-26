@@ -36,73 +36,78 @@
     <div id="calender">
     </div>
     <script type="text/javascript">
-
-    function rangeOverlap(a,b){
-        return (a.start <= b.end) && (a.end >= b.start); 
+    function rangeOverlap(a, b) {
+        return (a.start <= b.end) && (a.end >= b.start);
     }
 
     function unionArrays(x, y) {
-            var res = [];
-            for (var i = 0; i < x.length; i++) {
-                if (res.indexOf(x[i]) === -1)
-                    res.push(x[i]);
-            }
-            for (var j = 0; j < y.length; j++) {
-                if (res.indexOf(y[j]) === -1)
-                    res.push(y[j]);
-            }
-            return res;
+        var res = [];
+        for (var i = 0; i < x.length; i++) {
+            if (res.indexOf(x[i]) === -1)
+                res.push(x[i]);
         }
-
-    function getIdDetails(arr,val){
-            for(var i =0 ; i<arr.length ; i++){
-                if(arr[i].id == val)
-                    return arr[i];
-            }
+        for (var j = 0; j < y.length; j++) {
+            if (res.indexOf(y[j]) === -1)
+                res.push(y[j]);
+        }
+        return res;
     }
 
-    function getTimeSlotDimensions(arr){
+    function getIdDetails(arr, val) {
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i].id == val)
+                return arr[i];
+        }
+    }
+
+    function getTimeSlotDimensions(arr) {
         var res = [];
-        res.push({"id":[arr[0].id],"start":arr[0].start,"end":arr[0].end})
-        for(var i=1 ;i<arr.length;i++){
-            var x = [];
-            var obj = {"id":[arr[i].id],"start":arr[i].start,"end":arr[i].end};
-            res.map(function(value,index){
-                if(rangeOverlap(value,obj)){
-                    x.push(index);
-                    obj["id"] = unionArrays(obj["id"],value.id);
-                    obj["start"] = Math.min(obj.start,value.start);
-                    obj["end"] = Math.max(obj.end,value.end);
+        var r = [];
+        res.push({
+            "id": [arr[0].id],
+            "start": arr[0].start,
+            "end": arr[0].end
+        })
+        for (var i = 1; i < arr.length; i++) {
+            var mergeIndex = [];
+            var obj = {
+                "id": [arr[i].id],
+                "start": arr[i].start,
+                "end": arr[i].end
+            };
+            res.map(function(value, index) {
+                if (rangeOverlap(value, obj)) {
+                    mergeIndex.push(index);
+                    obj["id"] = unionArrays(obj["id"], value.id);
+                    obj["start"] = Math.min(obj.start, value.start);
+                    obj["end"] = Math.max(obj.end, value.end);
                 }
             })
-            console.log(x);
-            x.map(function(value){
-                res.splice(value,1);
+            mergeIndex.map(function(value) {
+                res.splice(value, 1);
                 console.log(res);
             });
             res.push(obj);
-            console.log(obj);
-            
+
         }
-        console.log(res);
-        var r = [];
-        res.map(function(value,index){
+
+        res.map(function(value, index) {
             var y = value.id.length;
-            var width = 600/y;
-            
-            value.id.map(function(val,ind){
-                var m = getIdDetails(arr,val);
+            var width = 600 / y;
+
+            value.id.map(function(val, ind) {
+                var m = getIdDetails(arr, val);
                 r.push({
-                    "top":m.start*2,
-                    "left":ind *width,
-                    "width":width,
-                    "height":(m.end - m.start) *2,
-                    "id":m.id
+                    "top": m.start * 2,
+                    "left": ind * width,
+                    "width": width,
+                    "height": (m.end - m.start) * 2,
+                    "id": m.id
                 })
             })
         })
 
-        return r ;
+        return r;
     }
 
     function createTimeSlots(slots) {
@@ -139,7 +144,6 @@
         "start": 40,
         "end": 640
     }]));
-    
     </script>
 </body>
 
