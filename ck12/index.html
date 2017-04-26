@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title of the document</title>
+    <style>
+    #calender {
+        width: 600px;
+        height: 1440px;
+        position: relative;
+        border: 1px solid;
+        margin: auto;
+    }
+    
+    .cal-item {
+        display: table;
+        position: absolute;
+        top: 100px;
+        width: 200px;
+        height: 30px;
+        left: 0;
+        border: 1px solid red;
+        text-align: center;
+    }
+    
+    .cal-item p {
+        display: table-cell;
+        vertical-align: middle;
+        font-weight: bold;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="calender">
+    </div>
+    <script type="text/javascript">
+    var timeSlot = new Array(720).fill(0);
+
+    function getSlotDimensions(arr) {
+        var res = [];
+        arr.map(function(value, index) {
+            for (var i = value.start - 1; i < value.end; i++) {
+                timeSlot[i]++;
+            }
+        })
+        arr.map(function(value, index) {
+            var a = 0;
+            var b = timeSlot[value.start - 1];
+            for (var j = value.start - 1; j < value.end; j++) {
+                if (timeSlot[j] > a)
+                    a = timeSlot[j]
+            }
+            res.push({
+                "id": value.id,
+                "width": 600 / a,
+                "top": value.start * 2,
+                "height": value.end * 2 - value.start * 2,
+                "left": (600 / a) * (b - 1),
+                "right": (600 / a) * (b - 1) + (600 / a)
+            });
+        })
+        return res;
+    }
+
+    function createTimeSlots(slots) {
+        slots.map(function(value, index) {
+            var y = document.createElement("div");
+            y.style.top = value.top + "px";
+            y.style.left = value.left + "px";
+            y.style.height = value.height + "px";
+            y.style.width = value.width + "px";
+            y.className = "cal-item";
+            y.innerHTML = "<p>" + value.id + "</p>";
+            document.getElementById("calender").appendChild(y)
+        })
+    }
+
+    createTimeSlots(getSlotDimensions([{
+        "id": 1,
+        "start": 120,
+        "end": 150
+    }, {
+        "id": 2,
+        "start": 125,
+        "end": 155
+    }, {
+        "id": 3,
+        "start": 130,
+        "end": 170
+    }, {
+        "id": 4,
+        "start": 180,
+        "end": 200
+    }, {
+        "id": 5,
+        "start": 135,
+        "end": 157
+    }, {
+        "id": 6,
+        "start": 300,
+        "end": 360
+    }]));
+    </script>
+</body>
+
+</html>
